@@ -7,8 +7,10 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -21,13 +23,18 @@ import java.util.ArrayList;
 public class BadSymptoms {
     private boolean LOG_PRINT = true;
     private final String LOG_TAG = BadSymptoms.class.getSimpleName();
-    public GestureDetector gestureDetector;
-    private String application,activityName;
-    private Activity activity;
-    public GestureListener gestureListener;
-    private Application app;
-    private ArrayList<View> allView;
 
+    private Application app;
+    private Activity activity;
+
+    public GestureDetector gestureDetector;
+    public GestureListener gestureListener;
+
+    public ScaleGestureDetector scaleGestureDetector;
+    public ScaleGestureListener scaleGestureListener;
+
+    private String application,activityName;
+    private ArrayList<View> allView;
 
     public BadSymptoms(Context context){
         activity = (Activity) context;
@@ -36,6 +43,9 @@ public class BadSymptoms {
 
         gestureListener = new GestureListener(application,activityName);
         gestureDetector = new GestureDetector(context, gestureListener);
+
+        scaleGestureListener = new ScaleGestureListener(application,activityName);
+        scaleGestureDetector = new ScaleGestureDetector(context,scaleGestureListener);
 
         //allView = getAllChildren(activity.getWindow().getDecorView().getRootView());
         allView = getAllChildren(activity.getWindow().getDecorView().findViewById(android.R.id.content));
@@ -133,7 +143,35 @@ public class BadSymptoms {
                 gestureListener.setView(getViewName(view));
                 gestureDetector.onTouchEvent(motionEvent);
 
+                scaleGestureListener.setView(getViewName(view));
+                scaleGestureDetector.onTouchEvent(motionEvent);
+
                 return false;
+            }
+        });
+
+        view.setOnDragListener(new View.OnDragListener(){
+            @Override
+            public boolean onDrag(View v, DragEvent event) {
+                switch (event.getAction()) {
+                    case DragEvent.ACTION_DRAG_STARTED:
+                        // do nothing
+                        break;
+                    case DragEvent.ACTION_DRAG_ENTERED:
+                        // do nothing
+                        break;
+                    case DragEvent.ACTION_DRAG_EXITED:
+                        // do nothing
+                        break;
+                    case DragEvent.ACTION_DROP:
+                        LogSave.jSonSave("user", application, activityName, getViewName(v), "Drag");
+                        break;
+                    case DragEvent.ACTION_DRAG_ENDED:
+                        // do nothing
+                    default:
+                        break;
+                }
+                return true;
             }
         });
     }
