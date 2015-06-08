@@ -21,9 +21,6 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 
 public class GestureListener extends GestureDetector.SimpleOnGestureListener {
-    private boolean LOG_PRINT = true;
-    private final String LOG_TAG = GestureListener.class.getSimpleName();
-
     String application,activity,view;
     private static final int SWIPE_THRESHOLD = 100;
     private static final int SWIPE_VELOCITY_THRESHOLD = 100;
@@ -39,10 +36,6 @@ public class GestureListener extends GestureDetector.SimpleOnGestureListener {
 
     private void jSonActivity(String msg) {
         LogSave.jSonSave("user",this.application,this.activity,this.view,msg);
-        //LogSave.printLog(this.application);
-
-        if (LOG_PRINT)
-            Log.i(LOG_TAG,"Activity: " + this.activity + ", view :"+this.view + ", Gesture: "+msg);
     }
 
     @Override
