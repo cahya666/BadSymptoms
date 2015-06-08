@@ -27,8 +27,6 @@ public class ScaleGestureListener extends ScaleGestureDetector.SimpleOnScaleGest
         lastSpanX = detector.getCurrentSpanX();
         lastSpanY = detector.getCurrentSpanY();
 
-        logPrint("before scale -> X: " + lastSpanX + ", Y: " + lastSpanY);
-
         return true;
     }
 
@@ -44,7 +42,5 @@ public class ScaleGestureListener extends ScaleGestureDetector.SimpleOnScaleGest
         jSonActivity("Scale");
         lastSpanX = detector.getCurrentSpanX();
         lastSpanY = detector.getCurrentSpanY();
-
-        logPrint("after scale --> X: " + lastSpanX + ", Y: " + lastSpanY);
     }
 }
