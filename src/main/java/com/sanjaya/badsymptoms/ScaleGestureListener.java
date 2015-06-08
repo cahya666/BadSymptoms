@@ -1,6 +1,5 @@
 package com.sanjaya.badsymptoms;
 
-import android.util.Log;
 import android.view.ScaleGestureDetector;
 import android.view.DragEvent;
 
