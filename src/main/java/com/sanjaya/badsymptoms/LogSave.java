@@ -20,6 +20,9 @@ import java.util.Date;
  * Created by cahya on 26/05/2015.
  */
 public class LogSave {
+    private static boolean LOG_PRINT = false;
+    private static final String LOG_TAG = LogSave.class.getSimpleName();
+
 
     static void fileSave(String text, String fileName){
         String root = Environment.getExternalStorageDirectory().toString();
@@ -38,6 +41,9 @@ public class LogSave {
     }
 
     static void jSonSave(String user,String application,String activity,String view,String event) {
+        if (LOG_PRINT)
+            Log.i(LOG_TAG, "Activity: " + activity + ", view :" + view + ", Gesture: " + event);
+
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String timestamp = format.format(new Date());
 

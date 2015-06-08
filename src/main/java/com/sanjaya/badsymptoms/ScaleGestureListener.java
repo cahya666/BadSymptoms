@@ -5,9 +5,6 @@ import android.view.ScaleGestureDetector;
 import android.view.DragEvent;
 
 public class ScaleGestureListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
-    private boolean LOG_PRINT = true;
-    private final String LOG_TAG = ScaleGestureListener.class.getSimpleName();
-
     private float lastSpanX;
     private float lastSpanY;
 
@@ -24,13 +21,6 @@ public class ScaleGestureListener extends ScaleGestureDetector.SimpleOnScaleGest
 
     private void jSonActivity(String msg) {
         LogSave.jSonSave("user",this.application,this.activity,this.view,msg);
-        //LogSave.printLog(this.application);
-        logPrint("Activity: " + this.activity + ", view :" + this.view + ", Gesture: " + msg);
-    }
-
-    private void logPrint(String msg){
-        if (LOG_PRINT)
-            Log.i(LOG_TAG, msg);
     }
 
     @Override

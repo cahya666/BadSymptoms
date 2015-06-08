@@ -21,7 +21,7 @@ import com.sanjaya.badsymptoms.activitylifecyclecallbackscompat.ApplicationHelpe
 import java.util.ArrayList;
 
 public class BadSymptoms {
-    private boolean LOG_PRINT = true;
+    private boolean LOG_PRINT = false;
     private final String LOG_TAG = BadSymptoms.class.getSimpleName();
 
     private Application app;
