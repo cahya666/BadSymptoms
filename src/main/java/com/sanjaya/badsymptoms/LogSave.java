@@ -21,7 +21,7 @@ import java.util.Date;
  * Created by cahya on 26/05/2015.
  */
 public class LogSave {
-    private static boolean LOG_PRINT = false;
+    private static boolean LOG_PRINT = true;
     private static final String LOG_TAG = LogSave.class.getSimpleName();
 
 
